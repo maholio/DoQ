@@ -10,7 +10,7 @@ case $choice in
         echo "Installation selected."
         read -p "Enter the DNS over QUIC server name: " doq_server
         opkg update
-        opkg install dnsmasq quiche
+        opkg install quiche
         echo "server=${doq_server}#53" >> /etc/dnsmasq.conf
         /etc/init.d/dnsmasq enable
         /etc/init.d/dnsmasq restart
@@ -19,7 +19,7 @@ case $choice in
     2)
         echo "Uninstallation selected."
         sed -i '/^server=/d' /etc/dnsmasq.conf
-        opkg remove dnsmasq quiche
+        opkg remove quiche
         /etc/init.d/dnsmasq disable
         /etc/init.d/dnsmasq stop
         echo "DNS over QUIC setup removed."
